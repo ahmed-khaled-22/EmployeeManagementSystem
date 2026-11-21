@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies', 'id')->cascadeOnDelete();
-            $table->string('name');
+            $table->foreignId('company_id')->constrained('companies', 'id')->restrictOnDelete();
+            $table->string('name')->unique();
             $table->timestamps();
-            $table->softDeletes('delete_at');
+            $table->softDeletes('deleted_at');
         });
     }
 

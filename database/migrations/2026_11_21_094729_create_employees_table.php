@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id')->constrained('companies', 'id')->cascadeOnDelete();
-            $table->foreignId('department_id')->constrained('departments', 'id')->cascadeOnDelete();
+            $table->foreignId('company_id')->constrained('companies', 'id')->restrictOnDelete();
+            $table->foreignId('department_id')->constrained('departments', 'id')->restrictOnDelete();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('mobile')->nullable();
-            $table->string('address')->nullable();
+            $table->string('mobile');
+            $table->string('address');
             $table->string('designation');
-            $table->enum('status', [ 'pending', 'hired', 'rejected'])->default('pending');
+            $table->string('status')->default('application_received');
             $table->date('hired_on')->nullable();
             $table->timestamps();
-            $table->softDeletes('delete_at');
+            $table->softDeletes('deleted_at');
         });
     }
 

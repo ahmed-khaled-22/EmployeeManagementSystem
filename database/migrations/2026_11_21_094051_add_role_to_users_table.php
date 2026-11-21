@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', ['admin', 'manager', 'employee'])->default('employee')->after('email');
-            $table->softDeletes();
+            $table->softDeletes('deleted_at');
         });
     }
 
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['role', 'delete_at']);
+            $table->dropColumn(['role', 'deleted_at']);
         });
     }
 };
