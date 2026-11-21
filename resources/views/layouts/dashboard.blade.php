@@ -5,12 +5,19 @@
 @include('layouts.partials.navbar')
 
     <div class="d-flex align-items-stretch">
-@include('layouts.partials.sidebar')
+      @include('layouts.partials.sidebar')
       
-      @yield('content')
-      
-@include('layouts.partials.footer')
+      <div class="page-content">
+        <div class="page-header">
+            <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">@yield('page-title')</h2>
+            </div>
+        </div>
         
+        @yield('content')
+        
+        @include('layouts.partials.footer')
+          
       </div>
     </div>
 @include('layouts.partials.script')
